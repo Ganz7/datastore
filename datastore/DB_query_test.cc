@@ -11,12 +11,9 @@ using namespace rocksdb;
 std::string kDBPath = "/tmp/datastore_test";
 
 int main() {
-	// open DB
-  	Options options;
-  	options.create_if_missing = true;
-  	DB* db;
-  	Status s = DB::Open(options, kDBPath, &db);
-  	assert(s.ok());
+	// open db
+	DB* db;
+  	Status s;
 
 	// open DB with the column families
   	std::vector<ColumnFamilyDescriptor> column_families;
@@ -46,7 +43,7 @@ int main() {
 	
 	//Retreive sentence using received_pointer
 	std::string sentence;
-  	s = db->Get(ReadOptions(), handles[2], Slice(pointer), &sentence);
+  	s = db->Get(ReadOptions(), handles[2], Slice(received_pointer), &sentence);
  	assert(s.ok());
   	assert(sentence == "hello world");
 
