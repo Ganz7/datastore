@@ -20,7 +20,7 @@ build_config.mk
 *.d-e
 *.o-*
 *.swp
-
+*.DS_Store
 ldb
 manifest_dump
 sst_dump
