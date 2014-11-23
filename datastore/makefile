@@ -2,7 +2,7 @@ include ../build_config.mk
 
 .PHONY: clean
 
-all: DB_create DB_delete
+all: DB_create DB_delete DB_query_test
 
 DB_create: DB_create.cc
 	$(CXX) $(CXXFLAGS) $@.cc -o$@ ../librocksdb.a -I../include -O2 -std=c++11 $(PLATFORM_LDFLAGS) $(PLATFORM_CXXFLAGS) $(EXEC_LDFLAGS)
@@ -10,5 +10,8 @@ DB_create: DB_create.cc
 DB_delete: DB_delete.cc
 	$(CXX) $(CXXFLAGS) $@.cc -o$@ ../librocksdb.a -I../include -O2 -std=c++11 $(PLATFORM_LDFLAGS) $(PLATFORM_CXXFLAGS) $(EXEC_LDFLAGS)
 
+DB_query_test: DB_query_test.cc
+	$(CXX) $(CXXFLAGS) $@.cc -o$@ ../librocksdb.a -I../include -O2 -std=c++11 $(PLATFORM_LDFLAGS) $(PLATFORM_CXXFLAGS) $(EXEC_LDFLAGS)
+
 clean: DB_create DB_delete
-	rm -rf ./DB_create ./DB_delete
+	rm -rf ./DB_create ./DB_delete ./DB_query_test
